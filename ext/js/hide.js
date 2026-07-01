@@ -1,10 +1,17 @@
 const JOBS_PATH = '/jobs/search/';
-const PATH_OBSERVER = new MutationObserver((mutations) => checkPathChanges());
-const JOB_LIST_OBSERVER = new MutationObserver((mutations) => run());
+const PATH_OBSERVER = new MutationObserver(checkPathChanges);
+const JOB_LIST_OBSERVER = new MutationObserver(run);
 
 let enabled;
 let oldPath;
 let tags;
+
+function setEnabled(nextEnabled) {
+  enabled = nextEnabled;
+  document.documentElement.dataset.hidePromotedJobs = enabled
+    ? 'enabled'
+    : 'disabled';
+}
 
 function checkPathChanges() {
   if (oldPath !== window.location.pathname) {
@@ -14,6 +21,10 @@ function checkPathChanges() {
 }
 
 function run() {
+  if (!tags || !window.location.pathname.startsWith(JOBS_PATH)) {
+    return;
+  }
+
   const display = enabled ? 'none' : 'initial';
   const liElements = document.querySelectorAll('li');
   liElements.forEach((li) => {
@@ -49,22 +60,32 @@ function connectJobListObserver() {
 
 function initialize() {
   if (!tags) {
-    const langsFile = browser.runtime.getURL('js/langs.json');
+    const langsFile = chrome.runtime.getURL('js/langs.json');
     fetch(langsFile)
       .then((response) => response.json())
       .then((json) => {
-        tags = [json[document.documentElement.lang]]
-          .flat()
-          .map((tag) => tag.toLowerCase());
+        const locale = document.documentElement.lang
+          .toLowerCase()
+          .split('-')[0];
+        tags = [json[locale] || json.en].flat().map((tag) => tag.toLowerCase());
       });
   }
 
-  browser.storage.local.get().then((options) => {
-    enabled = options.enabled;
+  chrome.storage.local.get({ enabled: true }, (options) => {
+    setEnabled(options.enabled);
     connectPathObserver();
     connectJobListObserver();
   });
 }
 
-browser.storage.onChanged.addListener(initialize);
+function handleStorageChange(changes, areaName) {
+  if (areaName !== 'local' || !changes.enabled) {
+    return;
+  }
+
+  setEnabled(changes.enabled.newValue);
+  run();
+}
+
+chrome.storage.onChanged.addListener(handleStorageChange);
 initialize();
