@@ -4,12 +4,12 @@
   "description": "Hides promoted job postings on LinkedIn's job search pages.",
   "main": "index.js",
   "scripts": {
-    "build": "web-ext build -s ext --overwrite-dest",
+    "build": "web-ext build -s ext --overwrite-dest --ignore-files \"**/* 2.js\"",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "lint": "eslint .",
+    "lint": "eslint . --ignore-pattern \"**/* 2.js\"",
     "lint:fix": "eslint --fix .",
-    "test": "node --test",
+    "test": "node --test test/*.test.js",
     "check": "npm run lint && npm run format:check && npm test && npm run build"
   },
   "repository": {
@@ -28,6 +28,7 @@
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-prettier": "^4.2.1",
+    "linkedom": "^0.18.12",
     "prettier": "^2.8.3",
     "web-ext": "^7.5.0"
   }

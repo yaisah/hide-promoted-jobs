@@ -19,7 +19,8 @@ test('keeps permissions and LinkedIn exposure narrowly scoped', () => {
   assert.deepEqual(manifest.content_scripts, [
     {
       matches: ['*://*.linkedin.com/*'],
-      js: ['js/hide.js'],
+      js: ['js/detection.js', 'js/hide.js'],
+      all_frames: true,
     },
   ]);
   assert.deepEqual(manifest.web_accessible_resources, [
