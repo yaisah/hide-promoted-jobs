@@ -4,8 +4,8 @@
 
 Complete on 2026-07-02. The reviewed recovery is merged into Yaisah's `main`,
 tagged as `v1.6.0`, and published with its deterministic archive and checksum.
-The approved issue-first outreach is public upstream; no upstream pull request
-was opened.
+The approved issue-first outreach is public upstream. After the maintainer
+accepted Chromium-first scope, a clean draft pull request was opened for review.
 
 ## Source and Publishing State
 
@@ -19,6 +19,8 @@ was opened.
 - Release assets: `hide_promoted_jobs-1.6.0.zip` and its `.sha256` file
 - Upstream issue:
   [`winterhazel/hide-promoted-jobs#4`](https://github.com/winterhazel/hide-promoted-jobs/issues/4)
+- Upstream draft pull request:
+  [`winterhazel/hide-promoted-jobs#5`](https://github.com/winterhazel/hide-promoted-jobs/pull/5)
 - Upstream fetch remote: `https://github.com/winterhazel/hide-promoted-jobs.git`
 - Upstream push URL: disabled
 
@@ -91,9 +93,12 @@ The approved path is:
    public documentation from a clean branch based on `upstream/main`.
 
 Yaisah approved the exact public message after the release links were live. It
-was published as upstream issue `#4` on 2026-07-02. No upstream pull request was
-opened; the next step depends on the maintainer's response and browser-scope
-preference.
+was published as upstream issue `#4` on 2026-07-02. Fabricio then approved a
+Chromium-first contribution. Draft pull request `#5` was created from a clean,
+single-commit branch based on `upstream/main`; it contains the portable runtime,
+tests, sanitized fixtures, CI, packaging, and public maintenance documentation,
+while excluding fork-only release records and personal artifacts. It awaits
+maintainer review.
 
 ## Gate Decision
 
