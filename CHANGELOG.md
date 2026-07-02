@@ -30,9 +30,10 @@ All notable changes to this maintained fork are documented here.
 
 - All 32 release tests, lint, formatting, dependency audit, and extension
   packaging passed during release preparation.
-- Direct loads, filters, client navigation, pagination, toggle restoration,
-  restart persistence, organic-card checks, and unsupported pages passed in
-  Chrome 149 and Brave 149 on macOS.
+- Runtime verification of direct loads, filters, client navigation, pagination,
+  toggle restoration, restart persistence, organic-card checks, and unsupported
+  pages passed in Chrome 149 and Brave 149 on macOS. Fresh installation of the
+  final `1.6.0` archive remains a release gate.
 - The product owner confirmed that promoted job cards remained hidden during
   normal browsing in both target browsers.
 
