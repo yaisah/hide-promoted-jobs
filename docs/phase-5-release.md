@@ -9,10 +9,10 @@ installation of that exact archive in disposable Chrome and Brave profiles.
 
 ## Source and Publishing State
 
-- Release branch: `codex/phase-5-release`
+- Release branch: `fix/manifest-and-compatibility`
 - Release-candidate commit: `ba7d205`
 - Fork pull request:
-  [`yaisah/hide-promoted-jobs#1`](https://github.com/yaisah/hide-promoted-jobs/pull/1)
+  [`yaisah/hide-promoted-jobs#2`](https://github.com/yaisah/hide-promoted-jobs/pull/2)
 - Pull-request target: Yaisah's `main` at upstream baseline `8b476ab`
 - Upstream fetch remote: `https://github.com/winterhazel/hide-promoted-jobs.git`
 - Upstream push URL: disabled
@@ -86,7 +86,7 @@ Yaisah's approval.
    profiles using the documented steps.
 2. Confirm version `1.6.0`, `ON` state, and extension health in both browsers.
 3. Update the support matrix and this report with the final archive result.
-4. Mark pull request `#1` ready, merge it after green CI, tag the merge commit,
+4. Mark pull request `#2` ready, merge it after green CI, tag the merge commit,
    and publish the archive plus checksum as release `v1.6.0`.
 5. Confirm the public release links and obtain approval for the exact upstream
    issue message before posting it.
