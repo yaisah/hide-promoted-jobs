@@ -326,6 +326,45 @@ test('restores a hidden card when virtualization recycles it as organic', async 
   assert.equal(card.hasAttribute('data-hide-promoted-jobs-hidden'), false);
 });
 
+test('restores and releases hidden cards removed from the document', async () => {
+  const card = createCard({
+    display: 'grid',
+    priority: 'important',
+    hasStyle: true,
+  });
+  const removedRoot = {
+    nodeType: 1,
+    hasAttribute: () => false,
+    closest: () => null,
+    querySelectorAll: () => [card],
+  };
+  let initialScan = true;
+  const runtime = await runContent({
+    card,
+    findPromotedCards() {
+      if (initialScan) {
+        initialScan = false;
+        return [card];
+      }
+      return [];
+    },
+  });
+  assert.equal(card.style.getPropertyValue('display'), 'none');
+
+  runtime.observer.callback([
+    {
+      type: 'childList',
+      target: { nodeType: 1 },
+      addedNodes: [],
+      removedNodes: [removedRoot],
+    },
+  ]);
+
+  assert.equal(card.style.getPropertyValue('display'), 'grid');
+  assert.equal(card.style.getPropertyPriority('display'), 'important');
+  assert.equal(card.hasAttribute('data-hide-promoted-jobs-hidden'), false);
+});
+
 test('cards added while disabled are handled when the extension is re-enabled', async () => {
   const card = createCard();
   let cardReady = false;

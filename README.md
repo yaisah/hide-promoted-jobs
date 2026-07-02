@@ -14,8 +14,8 @@ layouts.
 
 | Browser       | Version 1.6.0 status                            |
 | ------------- | ----------------------------------------------- |
-| Google Chrome | Verified on macOS with Chrome 149               |
-| Brave         | Verified on macOS with Brave 149                |
+| Google Chrome | Runtime verified; final archive install pending |
+| Brave         | Runtime verified; final archive install pending |
 | Firefox       | Not verified for this fork; support is deferred |
 
 The original upstream store listings may still contain an older release. Install

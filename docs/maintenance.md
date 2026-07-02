@@ -79,7 +79,8 @@ present, or a required browser workflow is unverified.
 
 1. Identify the last verified commit or release tag.
 2. Check it out in a separate directory or detached worktree.
-3. Run `npm ci` and `npm run check`.
+3. If that revision includes a lockfile, run its documented dependency install
+   and checks. Historical revisions may require their original toolchain.
 4. Load that revision's `ext/` directory and verify the badge and direct search.
 5. Keep the failed release available for diagnosis; do not rewrite published
    tags.

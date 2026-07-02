@@ -158,6 +158,7 @@ function handleMutations(mutations) {
   }
 
   const roots = new Set();
+  const removedOwnedCards = new Set();
   mutations.forEach((mutation) => {
     if (mutation.type === 'attributes' && mutation.target.nodeType === 1) {
       roots.add(mutation.target);
@@ -175,6 +176,10 @@ function handleMutations(mutations) {
       }
     });
 
+    Array.from(mutation.removedNodes || []).forEach((node) => {
+      collectOwnedCards(node, removedOwnedCards);
+    });
+
     if (
       (mutation.removedNodes || []).length > 0 &&
       mutation.target.nodeType === 1
@@ -182,6 +187,7 @@ function handleMutations(mutations) {
       roots.add(mutation.target);
     }
   });
+  removedOwnedCards.forEach((card) => restoreCard(card));
   scanRoots(roots);
 }
 

@@ -10,6 +10,28 @@ const manifest = JSON.parse(
   fs.readFileSync(path.join(root, 'ext', 'manifest.json'), 'utf8')
 );
 const archiveName = `hide_promoted_jobs-${manifest.version}.zip`;
+const expectedFiles = [
+  'icons/icon.svg',
+  'icons/icon128.png',
+  'icons/icon16.png',
+  'icons/icon32.png',
+  'icons/icon48.png',
+  'icons/icon64.png',
+  'js/background.js',
+  'js/detection.js',
+  'js/hide.js',
+  'js/langs.json',
+  'manifest.json',
+].sort();
+const trackedFiles = execFileSync(
+  'git',
+  ['ls-tree', '-r', '--name-only', 'HEAD:ext'],
+  { cwd: root, encoding: 'utf8' }
+)
+  .trim()
+  .split('\n')
+  .filter(Boolean)
+  .sort();
 const sourceEpoch = Number(
   execFileSync('git', ['log', '-1', '--format=%ct', 'HEAD', '--', 'ext'], {
     cwd: root,
@@ -17,6 +39,12 @@ const sourceEpoch = Number(
   }).trim()
 );
 const sourceMtime = new Date(sourceEpoch * 1000).toISOString();
+
+if (JSON.stringify(trackedFiles) !== JSON.stringify(expectedFiles)) {
+  throw new Error(
+    `Release source allow-list mismatch:\n${trackedFiles.join('\n')}`
+  );
+}
 
 function checksum(filePath) {
   return crypto

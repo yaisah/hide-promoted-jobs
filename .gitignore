@@ -1,2 +1,4 @@
 node_modules
 web-ext-artifacts
+ext/js/hide 2.js
+test/content-script.test 2.js

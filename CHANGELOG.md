@@ -20,13 +20,15 @@ All notable changes to this maintained fork are documented here.
 
 - Mutation handling now processes affected subtrees instead of repeatedly
   rescanning the full document.
+- Hidden cards removed by LinkedIn virtualization are restored before the
+  extension releases its ownership metadata.
 - Disabling the extension restores exact original inline display values and
   removes all extension ownership metadata.
 - Unsupported pages and uncertain card structures fail open.
 
 ### Verified
 
-- All 31 release tests, lint, formatting, dependency audit, and extension
+- All 32 release tests, lint, formatting, dependency audit, and extension
   packaging passed during release preparation.
 - Direct loads, filters, client navigation, pagination, toggle restoration,
   restart persistence, organic-card checks, and unsupported pages passed in
