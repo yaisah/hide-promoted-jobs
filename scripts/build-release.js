@@ -10,6 +10,13 @@ const manifest = JSON.parse(
   fs.readFileSync(path.join(root, 'ext', 'manifest.json'), 'utf8')
 );
 const archiveName = `hide_promoted_jobs-${manifest.version}.zip`;
+const sourceEpoch = Number(
+  execFileSync('git', ['log', '-1', '--format=%ct', 'HEAD', '--', 'ext'], {
+    cwd: root,
+    encoding: 'utf8',
+  }).trim()
+);
+const sourceMtime = new Date(sourceEpoch * 1000).toISOString();
 
 function checksum(filePath) {
   return crypto
@@ -24,7 +31,13 @@ function build(tempRoot, name) {
   const archivePath = path.join(artifactsDir, archiveName);
   execFileSync(
     'git',
-    ['archive', '--format=zip', `--output=${archivePath}`, 'HEAD:ext'],
+    [
+      'archive',
+      '--format=zip',
+      `--mtime=${sourceMtime}`,
+      `--output=${archivePath}`,
+      'HEAD:ext',
+    ],
     { cwd: root, stdio: 'inherit' }
   );
   return archivePath;
