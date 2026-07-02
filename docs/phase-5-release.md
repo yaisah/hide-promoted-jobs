@@ -2,15 +2,15 @@
 
 ## Status
 
-Release candidate ready. The branch and reviewed draft pull request are public,
-automated and independent review gates pass, and the deterministic archive is
-prepared. Merge, tag, and release publication remain blocked on fresh
-installation of that exact archive in disposable Chrome and Brave profiles.
+Release candidate verified. The branch and reviewed pull request are public,
+automated and independent review gates pass, and the deterministic archive
+installed cleanly in fresh disposable Chrome and Brave profiles. Merge, tag,
+and GitHub release publication are the remaining steps.
 
 ## Source and Publishing State
 
 - Release branch: `fix/manifest-and-compatibility`
-- Release-candidate commit: `ba7d205`
+- Verified release-candidate branch: `fix/manifest-and-compatibility`
 - Fork pull request:
   [`yaisah/hide-promoted-jobs#2`](https://github.com/yaisah/hide-promoted-jobs/pull/2)
 - Pull-request target: Yaisah's `main` at upstream baseline `8b476ab`
@@ -36,8 +36,18 @@ installation of that exact archive in disposable Chrome and Brave profiles.
 - Phase 4 runtime workflows passed in Chrome `149.0.7827.201` and Brave
   `149.1.91.180` on macOS, followed by product-owner confirmation during normal
   LinkedIn Jobs browsing.
-- Fresh installation from the final `1.6.0` archive remains pending and is a
-  hard gate before the pull request leaves draft status.
+- The final archive was extracted into a clean temporary directory and loaded
+  through each browser's documented **Load unpacked** flow in isolated,
+  disposable profiles.
+- Chrome `149.0.7827.201` reported version `1.6.0`, enabled state `ON`, extension
+  loaded, and an active `js/background.js` service worker. A direct service
+  worker check returned manifest version `1.6.0` and stored state
+  `enabled: true`.
+- Brave `149.1.91.180` reported the same version, enabled state, extension-loaded
+  status, active service worker, manifest version, and stored enabled state.
+- Both browsers loaded archive SHA-256
+  `e4d0f4415929b98c607b8176ed59bf8c8eb3122c622795a464059baa144b1dac`;
+  no normal browser profile was modified.
 - Pre-release rollback commit `6c30e86` was checked out in a detached worktree;
   its 29 tests passed and its Manifest V3 `ext/` directory remains loadable
   without modifying the release checkout.
@@ -80,13 +90,9 @@ The exact public message is maintained in Yaisah's Obsidian output
 `Hide Promoted Jobs Upstream Issue Draft.md`; publication remains pending
 Yaisah's approval.
 
-## Remaining Release Gate
+## Remaining Publication Steps
 
-1. Install the exact checksum-verified archive into disposable Chrome and Brave
-   profiles using the documented steps.
-2. Confirm version `1.6.0`, `ON` state, and extension health in both browsers.
-3. Update the support matrix and this report with the final archive result.
-4. Mark pull request `#2` ready, merge it after green CI, tag the merge commit,
+1. Mark pull request `#2` ready, merge it after green CI, tag the merge commit,
    and publish the archive plus checksum as release `v1.6.0`.
-5. Confirm the public release links and obtain approval for the exact upstream
-   issue message before posting it.
+2. Confirm the public release links, update this report with the merge and tag
+   commit, and post the already approved exact upstream issue message.

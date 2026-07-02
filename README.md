@@ -12,11 +12,11 @@ layouts.
 
 ## Browser Support
 
-| Browser       | Version 1.6.0 status                            |
-| ------------- | ----------------------------------------------- |
-| Google Chrome | Runtime verified; final archive install pending |
-| Brave         | Runtime verified; final archive install pending |
-| Firefox       | Not verified for this fork; support is deferred |
+| Browser       | Version 1.6.0 status                             |
+| ------------- | ------------------------------------------------ |
+| Google Chrome | Verified from final archive on macOS, Chrome 149 |
+| Brave         | Verified from final archive on macOS, Brave 149  |
+| Firefox       | Not verified for this fork; support is deferred  |
 
 The original upstream store listings may still contain an older release. Install
 this fork manually to use version 1.6.0.
