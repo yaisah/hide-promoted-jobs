@@ -44,8 +44,8 @@ The check covers manifest structure, minimum permissions, service-worker initial
 Verified on 2026-07-01 with Brave `149.1.91.180` and Google Chrome
 `149.0.7827.201`:
 
-- Both browsers loaded `/Users/yaisah/Documents/Projects/hide-promoted-jobs/ext`
-  as extension `jhedelbndagmgladjfklnpohcolgoiml` with no disable reasons.
+- Both browsers loaded the repository's `ext/` directory as extension
+  `jhedelbndagmgladjfklnpohcolgoiml` with no disable reasons.
 - Both profiles registered and started the version `1.5` service worker with
   `action.onClicked`, `runtime.onInstalled`, and `runtime.onStartup` listeners.
 - Both toolbar badges changed `ON` to `OFF` to `ON`, while local extension

@@ -5,7 +5,12 @@ module.exports = {
     webextensions: true,
   },
   extends: ['airbnb-base', 'prettier'],
-  overrides: [],
+  overrides: [
+    {
+      files: ['scripts/**/*.js'],
+      env: { node: true },
+    },
+  ],
   parserOptions: {
     ecmaVersion: 'latest',
   },
