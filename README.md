@@ -87,17 +87,16 @@ the new version has been verified.
 ## Roll Back
 
 The last verified pre-release revision is commit `6c30e86`. To load it without
-changing your `main` branch:
+changing your current checkout:
 
 ```bash
 git fetch origin
-git switch --detach 6c30e86
-npm ci
-npm run check
+git worktree add --detach ../hide-promoted-jobs-rollback 6c30e86
 ```
 
-Load `ext/` and verify the `ON` badge. Return to the current release with
-`git switch main` and reload the extension again.
+Load `../hide-promoted-jobs-rollback/ext/` and verify the `ON` badge. Return to
+the current release by loading the main checkout's `ext/` directory again. The
+rollback commit remains Manifest V3 and its 29 automated tests pass.
 
 ## Privacy
 
