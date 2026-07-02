@@ -2,10 +2,10 @@
 
 ## Status
 
-Release candidate verified. The branch and reviewed pull request are public,
-automated and independent review gates pass, and the deterministic archive
-installed cleanly in fresh disposable Chrome and Brave profiles. Merge, tag,
-and GitHub release publication are the remaining steps.
+Complete on 2026-07-02. The reviewed recovery is merged into Yaisah's `main`,
+tagged as `v1.6.0`, and published with its deterministic archive and checksum.
+The approved issue-first outreach is public upstream; no upstream pull request
+was opened.
 
 ## Source and Publishing State
 
@@ -13,10 +13,14 @@ and GitHub release publication are the remaining steps.
 - Verified release-candidate branch: `fix/manifest-and-compatibility`
 - Fork pull request:
   [`yaisah/hide-promoted-jobs#2`](https://github.com/yaisah/hide-promoted-jobs/pull/2)
-- Pull-request target: Yaisah's `main` at upstream baseline `8b476ab`
+- Merge commit: `e5b55af9f10fa75f025feafb72e2d226effc5ea3`
+- Tag: [`v1.6.0`](https://github.com/yaisah/hide-promoted-jobs/releases/tag/v1.6.0),
+  pointing to the reviewed merge commit
+- Release assets: `hide_promoted_jobs-1.6.0.zip` and its `.sha256` file
+- Upstream issue:
+  [`winterhazel/hide-promoted-jobs#4`](https://github.com/winterhazel/hide-promoted-jobs/issues/4)
 - Upstream fetch remote: `https://github.com/winterhazel/hide-promoted-jobs.git`
 - Upstream push URL: disabled
-- Planned tag: `v1.6.0`
 
 ## Package Evidence
 
@@ -74,7 +78,7 @@ contribution workflow. Its prior regression issue `#2` followed an issue-first
 pattern: the maintainer requested evidence, published a fix, and asked the
 reporter to retest.
 
-The approved path is therefore:
+The approved path is:
 
 1. Publish Yaisah's tested `v1.6.0` fork release.
 2. Obtain Yaisah's approval of the exact upstream issue title and body.
@@ -86,13 +90,14 @@ The approved path is therefore:
 5. If invited, port only accepted runtime code, tests, sanitized fixtures, and
    public documentation from a clean branch based on `upstream/main`.
 
-The exact public message is maintained in Yaisah's Obsidian output
-`Hide Promoted Jobs Upstream Issue Draft.md`; publication remains pending
-Yaisah's approval.
+Yaisah approved the exact public message after the release links were live. It
+was published as upstream issue `#4` on 2026-07-02. No upstream pull request was
+opened; the next step depends on the maintainer's response and browser-scope
+preference.
 
-## Remaining Publication Steps
+## Gate Decision
 
-1. Mark pull request `#2` ready, merge it after green CI, tag the merge commit,
-   and publish the archive plus checksum as release `v1.6.0`.
-2. Confirm the public release links, update this report with the merge and tag
-   commit, and post the already approved exact upstream issue message.
+Phase 5 passes. The fork, release package, checksum, installation guidance,
+rollback path, maintenance workflow, issue template, fresh browser installs,
+reviewed merge, tag, release assets, and approved issue-first upstream outreach
+all satisfy the release acceptance criteria.
